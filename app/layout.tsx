@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+});
 
 export const metadata: Metadata = {
   title: "SaraLab OS",
-  description: "A browser-based learning operating system.",
+  description: "A personal learning operating system.",
 };
 
 export default function RootLayout({
@@ -13,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.variable} ${caveat.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
