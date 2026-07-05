@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+
+  concepts Concept[]
+  labs     Lab[]
+  entries  JournalEntry[]
+}
+
+model Concept {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  summary     String
+  mentalModel String?
+  progress    Int      @default(0)
+  mastery     String   @default("introduced")
+  createdAt   DateTime @default(now())
+
+  skillId String
+  skill   Skill @relation(fields: [skillId], references: [id])
+
+  labs    LabConcept[]
+  entries JournalEntry[]
+}
+
+model Lab {
+  id           String   @id @default(cuid())
+  title        String
+  goal         String
+  environment  String?
+  commands     String[]
+  observations String[]
+  mistakes     String[]
+  takeaway     String?
+  status       String   @default("planned")
+  createdAt    DateTime @default(now())
+
+  skillId String
+  skill   Skill @relation(fields: [skillId], references: [id])
+
+  concepts LabConcept[]
+}
+
+model LabConcept {
+  labId     String
+  conceptId String
+
+  lab     Lab     @relation(fields: [labId], references: [id])
+  concept Concept @relation(fields: [conceptId], references: [id])
+
+  @@id([labId, conceptId])
+}
+
+model JournalEntry {
+  id        String   @id @default(cuid())
+  title     String
+  date      DateTime @default(now())
+
+  before    String?
+  clicked   String?
+  mistake   String?
+  question  String?
+  takeaway  String?
+
+  skillId String
+  skill   Skill @relation(fields: [skillId], references: [id])
+
+  conceptId String?
+  concept   Concept? @relation(fields: [conceptId], references: [id])
+}
+
+model Relationship {
+  id     String @id @default(cuid())
+  source String
+  target String
+  label  String
+  reason String
+}
