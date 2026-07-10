@@ -63,12 +63,13 @@ export default function TerminalApp() {
   const appName = trimmed.replace("open ", "").trim();
 
   if (
-    appName === "linux" ||
-    appName === "projects" ||
-    appName === "timeline" ||
-    appName === "resume" ||
-    appName === "terminal"
-  ) {
+  appName === "linux" ||
+  appName === "projects" ||
+  appName === "timeline" ||
+  appName === "resume" ||
+  appName === "terminal" ||
+  appName === "capture"
+) {
     openApp(appName);
     output.push(`Opening ${appName}...`);
   } else {

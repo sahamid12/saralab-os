@@ -5,7 +5,8 @@ export type AppName =
   | "linux"
   | "projects"
   | "timeline"
-  | "resume";
+  | "resume"
+  | "capture";
 
 type WindowPosition = {
   x: number;
@@ -36,6 +37,7 @@ export const useOSStore = create<OSState>((set) => ({
     projects: { x: 160, y: 420 },
     timeline: { x: 1070, y: 90 },
     resume: { x: 930, y: 600 },
+    capture: { x: 520, y: 180 },
   },
 
   zIndexes: {
@@ -44,6 +46,7 @@ export const useOSStore = create<OSState>((set) => ({
     projects: 10,
     timeline: 10,
     resume: 10,
+    capture: 10,
   },
 
   openApp: (app) =>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Folder, Terminal, Cpu, CalendarDays, FileText } from "lucide-react";
+import { Folder, PenLine, Terminal, Cpu, CalendarDays, FileText } from "lucide-react";
 import { useOSStore } from "@/store/os-store";
 
 const dockApps = [
@@ -9,6 +9,7 @@ const dockApps = [
   { name: "Projects", app: "projects", icon: Cpu },
   { name: "Timeline", app: "timeline", icon: CalendarDays },
   { name: "Resume", app: "resume", icon: FileText },
+  { name: "Capture", app: "capture", icon: PenLine },
 ] as const;
 
 export default function Dock() {

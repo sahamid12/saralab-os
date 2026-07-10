@@ -1,7 +1,7 @@
 "use client";
 
 import { useOSStore } from "@/store/os-store";
-
+import CaptureApp from "../apps/CaptureApp";
 import TerminalApp from "../apps/TerminalApp";
 import LinuxApp from "../apps/LinuxApp";
 import ProjectsApp from "../apps/ProjectsApp";
@@ -18,6 +18,7 @@ export default function WindowManager() {
       {openApps.includes("projects") && <ProjectsApp />}
       {openApps.includes("timeline") && <TimelineApp />}
       {openApps.includes("resume") && <ResumeApp />}
+      {openApps.includes("capture") && <CaptureApp />}
     </>
   );
 }
